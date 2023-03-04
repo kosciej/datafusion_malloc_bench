@@ -9,7 +9,7 @@ edition = "2021"
 datafusion = "18.0.0"
 dhat = "0.3.2"
 tokio = { version = "1.25.0", features = ["rt", "macros"] }
-criterion = "0.4"
+criterion = { version = "0.4", features = ["html_reports", "async_tokio"] }
 
 [dev-dependencies]
 jemallocator = "0.5.0"

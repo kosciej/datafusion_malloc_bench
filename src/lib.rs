@@ -43,12 +43,10 @@ pub fn benchmark(c: &mut Criterion, name: &str, query: &str) {
     ctx.register_table("test", Arc::new(data)).unwrap();
 
     c.bench_function(name, |b| {
-        b.iter(|| {
-            rt.block_on(async {
+        b.to_async(&rt).iter(|| async {
                 let r = ctx.sql(query).await.unwrap();
                 black_box(r);
-            })
-        })
+            });
     });
 }
 
